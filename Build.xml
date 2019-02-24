@@ -18,7 +18,7 @@
     </target>
 
 
-    <target name="runCount3s">
+    <target name="runCount3s" depends="Count3s">
         
        <java classname="CountThrees">
             <classpath>
