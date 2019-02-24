@@ -1,0 +1,34 @@
+<!-- 
+  Name:     Terrance Parks
+  Course:   CIS 145 Introduction to DevOps
+  CRN:      45595
+  Date:     2/3/2019
+ Assignment: Make - Write a build.xml file to compile Java Code
+-->
+<project>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="build\classes"/>
+        <javac srcdir="." destdir="build\classes"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="build\jar"/>
+        <jar destfile="build\jar\CountThrees.jar" basedir="build\classes">
+            <manifest>
+                <attribute name="Main-Class" value="CountThrees"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="runCount3s" depends="jar">
+       <copy file="threesData.bin" todir="../build/jar"/>
+        <java jar="build\jar\CountThrees.jar" fork="true"/>
+    </target>
+
+</project>
+
